@@ -1,0 +1,15 @@
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode input[type="text"] {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.dark-mode ul {
+    background-color: #333;
+    color: #ffffff;
+}

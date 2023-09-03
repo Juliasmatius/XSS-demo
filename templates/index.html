@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chat</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* CSS for positioning the button */
+        .button-container {
+            position: absolute;
+            top: 10px; /* Adjust the top position as needed */
+            right: 10px; /* Adjust the right position as needed */
+        }
+    </style>
+</head>
+<body class="{% if dark_mode %}dark-mode{% endif %}">
+    <div class="button-container">
+        <a href="https://github.com/Juliasmatius/XSS-demo"><img decoding="async" width="249" height="249" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" class="attachment-full size-full" alt="Fork this on GitHub" loading="lazy" data-recalc-dims="1"></a>
+    </div>
+    <h1>Simple Chat</h1>
+    <div>
+        <form method="POST" action="/chat">
+            <input type="text" name="message" placeholder="Enter your message">
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    <h2>Messages:</h2>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message|safe }}</li>  <!-- Use |safe to prevent escaping -->
+        {% endfor %}
+    </ul>
+    
+    {{ popup_script }}
+    
+    <script>
+        if (!isPopupShown()) {
+            document.cookie = 'popup_shown=false; expires=Thu, 01 Jan 2970 00:00:00 UTC; path=/';
+        }
+        function isPopupShown() {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.indexOf('popup_shown=') === 0) {
+                    return true; // Cookie 'popup_shown' exists
+                }
+            }
+            return false; // Cookie 'popup_shown' doesn't exist
+        }
+    </script>
+</body>
+</html>
