@@ -19,6 +19,7 @@ global i
 i=0
 @app.route('/chat', methods=['POST'])
 def chat():
+    popup_script=""
     user_input = request.form.get('message')
     cookie_value = request.cookies.get("popup_shown")
     if cookie_value == "false":
